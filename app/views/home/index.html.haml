@@ -1,101 +1,110 @@
 .page-header 
   %h3 等离子特性参量数据一览
 
-.div{:style=>"width:1650px;"}
-  %table.table.table-striped.table-hover#tb-overview{:style=>"width:90%;"}
-    %thead
+%table.table.table-striped.table-hover#tb-overview
+  %thead
+    %tr
+      %th{:colspan=>3,:style=>"font-size:20px;"} 
+        %span.label.label-info 实验名称
+      %th{:colspan=>15,:style=>"font-size:20px;"} 
+        %span.label.label-success 基本参数设定
+
+      / %th{:colspan=>5,:style=>"font-size:20px;min-width:180px"} 
+      /   %span.label.label-danger 朗缪尔探针诊断
+      / %th{:colspan=>8,:style=>"font-size:20px;"} 
+      /   %span.label.label-warning OES 诊断
+      / %th{:colspan=>2,:style=>"font-size:20px;"} 
+      /   %span.label{:style=>"background-color:dodgerblue"} 法拉第杯诊断
+    %tr
+      / c1
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 序号
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 薄膜名称
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 主要元素
+      / c2
+      %th.success{:colspan=>4} 靶材1
+      %th.success{:colspan=>4} 靶材2
+      %th.success{:colspan=>4} 气体流量
+      %th.success{:colspan=>3,:style=>"min-width:200px;"} 其余参数
+
+      %th{:colspan=>1,:rowspan=>2, :style=>"vertical-align:middle;"} 操作
+
+      / / c3
+      / %th.danger{:colspan=>2,:style=>"min-width:80px"} 探针参数
+      / %th.danger{:colspan=>3,:style=>"min-width:100px"} 电子特征参数
+      / / c4
+      / %th.warning{:colspan=>4} 元素1定量分析
+      / %th.warning{:colspan=>4} 元素2定量分析
+      / / c5 
+      / %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 离子平均电流
+      / %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 离子平均能量
+
+    %tr
+      / c2
+      %th.success 名称
+      %th.success 电压
+      %th.success 电流
+      %th.success 功率
+
+      %th.success 名称
+      %th.success 电压
+      %th.success 电流
+      %th.success 功率
+
+      %th.success 氩气
+      %th.success 氮气
+      %th.success 氧气
+      %th.success 甲烷
+
+      %th.success 本底真空
+      %th.success 基底偏压
+      %th.success 工作气压
+
+      / / c3
+      / %th.danger 靶基距
+      / %th.danger 表面积A
+
+      / %th.danger 饱和电子电流
+      / %th.danger 电子密度
+      / %th.danger 电子温度
+
+      / / c4
+      / %th.warning 元素名称
+      / %th.warning 原子
+      / %th.warning 离子
+      / %th.warning 离化程度
+
+      / %th.warning 元素名称
+      / %th.warning 原子
+      / %th.warning 离子
+      / %th.warning 离化程度
+
+  %tbody
+    - @hipims_data.each do |row|
       %tr
-        %th{:colspan=>3,:style=>"font-size:20px;"} 
-          %span.label.label-info 实验名称
-        %th{:colspan=>15,:style=>"font-size:20px;"} 
-          %span.label.label-success 基本参数设定
-        %th{:colspan=>5,:style=>"font-size:20px;min-width:180px"} 
-          %span.label.label-danger 朗缪尔探针诊断
-        %th{:colspan=>8,:style=>"font-size:20px;"} 
-          %span.label.label-warning OES 诊断
-        %th{:colspan=>2,:style=>"font-size:20px;"} 
-          %span.label{:style=>"background-color:dodgerblue"} 法拉第杯诊断
-      %tr
-        / c1
-        %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 序号
-        %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 薄膜名称
-        %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 主要元素
-        / c2
-        %th.success{:colspan=>4} 靶材1
-        %th.success{:colspan=>4} 靶材2
-        %th.success{:colspan=>4} 气体流量
-        %th.success{:colspan=>3,:style=>"min-width:200px;"} 其余参数
-        / c3
-        %th.danger{:colspan=>2,:style=>"min-width:80px"} 探针参数
-        %th.danger{:colspan=>3,:style=>"min-width:100px"} 电子特征参数
-        / c4
-        %th.warning{:colspan=>4} 元素1定量分析
-        %th.warning{:colspan=>4} 元素2定量分析
-        / c5 
-        %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 离子平均电流
-        %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 离子平均能量
+        - row[:c1].each_with_index do |item,index|
+          %th 
+            = !item.nil? ? "#{item}" : "-"
+        - row[:c2].each do |item|
+          %th 
+            = !item.nil? ? "#{item}" : "-"
+        %th
+          %a.btn.btn-sm.btn-primary{:href=>"#",:style=>"margin-bottom:5px;"}
+            %span.glyphicon.glyphicon-stats
+            谱线
+          %a.btn.btn-sm.btn-info{:href=>"#",:style=>"margin-bottom:5px;"} 
+            %span.glyphicon.glyphicon-pencil
+            编辑
+        / - row[:c3].each do |item|
+        /   %th 
+        /     = !item.nil? ? "#{item}" : "-"
+        / - row[:c4].each do |item|
+        /   %th 
+        /     = !item.nil? ? "#{item}" : "-"
+        / - row[:c5].each do |item|
+        /   %th 
+        /     = !item.nil? ? "#{item}" : "-"
 
-      %tr
-        / c2
-        %th.success 名称
-        %th.success 电压
-        %th.success 电流
-        %th.success 功率
-
-        %th.success 名称
-        %th.success 电压
-        %th.success 电流
-        %th.success 功率
-
-        %th.success 氩气
-        %th.success 氮气
-        %th.success 氧气
-        %th.success 甲烷
-
-        %th.success 本底真空
-        %th.success 基底偏压
-        %th.success 工作气压
-
-        / c3
-        %th.danger 靶基距
-        %th.danger 表面积A
-
-        %th.danger 饱和电子电流
-        %th.danger 电子密度
-        %th.danger 电子温度
-
-        / c4
-        %th.warning 元素名称
-        %th.warning 原子
-        %th.warning 离子
-        %th.warning 离化程度
-
-        %th.warning 元素名称
-        %th.warning 原子
-        %th.warning 离子
-        %th.warning 离化程度
-
-    %tbody
-      - @hipims_data.each do |row|
-        %tr
-          - row[:c1].each_with_index do |item,index|
-            - if index==0
-              %th
-                = item
-                .btn-sm.btn-primary 详细
-            - else
-              %th 
-                = !item.nil? ? "#{item}" : "-"
-          - row[:c2].each do |item|
-            %th 
-              = !item.nil? ? "#{item}" : "-"
-          - row[:c3].each do |item|
-            %th 
-              = !item.nil? ? "#{item}" : "-"
-          - row[:c4].each do |item|
-            %th 
-              = !item.nil? ? "#{item}" : "-"
-          - row[:c5].each do |item|
-            %th 
-              = !item.nil? ? "#{item}" : "-"
-
+.pull-right
+  %a.btn.btn-success{:href=>"#"}
+    %span.glyphicon.glyphicon-plus
+    新增一条数据
