@@ -8,7 +8,6 @@ HipimsdataRails::Application.routes.draw do
   root 'home#index'
   resources :items
 
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
