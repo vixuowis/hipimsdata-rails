@@ -9,10 +9,9 @@
 
 .page-header 
   %h4 溅射实验基本参数
-  %form.form-inline{action: '/items?col=2&elem=1', method: 'post'}
-    = render partial: "items/col2", locals: {elem:1} 
-  %form.form-inline{action: '/items?col=2&elem=2', method: 'post',:style=>"margin-top:10px;"}
-    = render partial: "items/col2", locals: {elem:2} 
+  - (1..2).each do |elem|
+    %form.form-inline{action: "/items?col=2&elem=#{elem}", method: 'post',:style=>"margin-bottom:10px;"}
+      = render partial: "items/col2", locals: {elem:elem}
 
 .page-header 
   %h4 朗缪尔探针参数
