@@ -1,13 +1,23 @@
 .page-header 
-  %h3 创建数据项
+  %h3 
+    数据项已创建
+    %i.glyphicon.glyphicon-ok{:style=>"color:green;font-size:20px;"}
+    %a.btn.btn-danger.pull-right{:type=>"button",:href=>"/items/1",:method=>'delete',:style=>"margin-left:10px;"} 删除该数据项
+
+/基本信息
+= render "items/col1"
 
 .page-header 
   %h4 溅射实验基本参数
+  %form.form-inline{action: '/items?col=2&elem=1', method: 'post'}
+    = render partial: "items/col2", locals: {elem:1} 
+  %form.form-inline{action: '/items?col=2&elem=2', method: 'post',:style=>"margin-top:10px;"}
+    = render partial: "items/col2", locals: {elem:2} 
 
 .page-header 
   %h4 朗缪尔探针参数
 
-.page-header 
+.page-header
   %h4 等离子体发射诊断 ( OES )
 
 %p 

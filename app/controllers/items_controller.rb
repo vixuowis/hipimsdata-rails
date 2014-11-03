@@ -49,4 +49,11 @@ class ItemsController < ApplicationController
 
   def edit
   end
+
+  def create
+    # redirect_to "/items/new"
+  end
+
+  def destroy
+  end
 end

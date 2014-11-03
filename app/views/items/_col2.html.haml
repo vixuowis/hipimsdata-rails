@@ -1,0 +1,17 @@
+.form-group{:style=>"margin-top:24px;"}
+  %span.label.label-info{:style=>"font-size:14px;"} 
+    = "靶材#{elem}"
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-name"} 名称
+  %input.form-control.col-sm-1#c2-elem-name{:placeholder=>"靶材#{elem}名称",:name=>"c2-elem[name]"}
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-v"} 电压
+  %input.form-control.col-sm-1#c2-elem-v{:placeholder=>"V",:name=>"c2-elem[v]"}
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-a"} 电流
+  %input.form-control.col-sm-1#c2-elem-a{:placeholder=>"A",:name=>"c2-elem[a]"}
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-w"} 功率
+  %input.form-control.col-sm-1#c2-elem-w{:placeholder=>"W",:name=>"c2-elem[w]"}
+.form-group{:style=>"margin-left:10px; margin-top:24px"}
+  %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
