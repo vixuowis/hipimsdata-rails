@@ -1,7 +1,7 @@
 %form.form-inline{action: '/items?col=1', method: 'post'}
   .form-group
     %label{:for=>"c1-no"} 序号
-    %input.form-control.col-sm-1#c1-no{:placeholder=>"唯一标示符",:name=>"c1[no]"}
+    %input.form-control.col-sm-1#c1-no{:placeholder=>"唯一标示符",:name=>"c1[no]",:value=>"#{@item.name}"}
   .form-group{:style=>"margin-left:10px;"}
     %label{:for=>"c1-name"} 薄膜名称
     %input.form-control.col-sm-1#c1-name{:placeholder=>"如: Ti",:name=>"c1[name]"}

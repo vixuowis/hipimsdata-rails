@@ -1,0 +1,17 @@
+.form-group{:style=>"margin-top:24px;"}
+  %span.label.label-info{:style=>"font-size:14px;"} 
+    = "气体流量"
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-ar"} 氩气
+  %input.form-control.col-sm-1#c2-elem-ar{:name=>"c2-elem[ar]"}
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-n"} 氮气
+  %input.form-control.col-sm-1#c2-elem-n{:name=>"c2-elem[n]"}
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-o"} 氧气
+  %input.form-control.col-sm-1#c2-elem-o{:name=>"c2-elem[o]"}
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-ch4"} 甲烷
+  %input.form-control.col-sm-1#c2-elem-ch4{:name=>"c2-elem[ch4]"}
+.form-group{:style=>"margin-left:10px; margin-top:24px"}
+  %input.btn.btn-primary{:type=>"submit",:value=>"保存"}

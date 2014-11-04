@@ -2,34 +2,6 @@
   %h3 
     数据项已创建
     %i.glyphicon.glyphicon-ok{:style=>"color:green;font-size:20px;"}
-    %a.btn.btn-danger.pull-right{:type=>"button",:href=>"/items/1",:method=>'delete',:style=>"margin-left:10px;"} 删除该数据项
+    %button.btn.btn-danger.pull-right#item-delete{:type=>"button",:action=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 删除该数据项
 
-/基本信息
-= render "items/col1"
-
-.page-header 
-  %h4 溅射实验基本参数
-  - (1..2).each do |elem|
-    %form.form-inline{action: "/items?col=2&elem=#{elem}", method: 'post',:style=>"margin-bottom:10px;"}
-      = render partial: "items/col2", locals: {elem:elem}
-
-.page-header 
-  %h4 朗缪尔探针参数
-
-.page-header
-  %h4 等离子体发射诊断 ( OES )
-
-%p 
-  精细谱
-  .btn.btn-xs.btn-primary 上传
-%br
-%p 
-  全谱
-  .btn.btn-xs.btn-primary 上传
-
-.page-header 
-  %h4 离子能量分布诊断 ( FLD )
-
-%p 
-  离子能量分布谱
-  .btn.btn-xs.btn-primary 上传
+= render "items/template_item"

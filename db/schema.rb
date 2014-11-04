@@ -11,6 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20141104144702) do
+
+  create_table "items", force: true do |t|
+    t.string   "name",       null: false
+    t.text     "c1"
+    t.text     "c2"
+    t.text     "c3"
+    t.text     "c4"
+    t.text     "c5"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "items", ["name"], name: "index_items_on_name", unique: true
 
 end

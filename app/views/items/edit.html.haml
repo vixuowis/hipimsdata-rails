@@ -1,2 +1,6 @@
-%h1 Items#edit
-%p Find me in app/views/items/edit.html.haml
+.page-header 
+  %h3 
+    = "数据项 #{@item.name}"
+    %button.btn.btn-danger.pull-right#item-delete{:type=>"button",:action=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 删除该数据项
+
+= render "items/template_item"
