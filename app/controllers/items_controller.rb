@@ -1,7 +1,7 @@
 # encoding: utf-8
 class ItemsController < ApplicationController
   def index
-    items = Item.all
+    items = Item.order("created_at desc").all
     @hipims_data = []
     items.each do |item|
       item_hash = {}
@@ -58,6 +58,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.create({:name=>Time.now.to_i})
     @item.save
+    redirect_to "/items/#{@item[:id]}/edit"
   end
 
   def show # show certain

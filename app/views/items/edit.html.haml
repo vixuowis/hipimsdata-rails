@@ -2,7 +2,12 @@
   %h3 
     %a{:href=>"/items"}数据一览
     = "/"
-    = "数据项 #{@item.name}"
+    = "#{@item.name}"
     %button.btn.btn-danger.pull-right#item-delete{:type=>"button",:action=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 删除该数据项
+    %small{:style=>"margin-left:20px;"}
+      - if @item.updated_at > @item.created_at
+        = "更新于 #{vix_time @item.updated_at}"
+        %span{:style=>"margin-right:10px;"}
+      = "创建于 #{vix_time @item.created_at}"
 
 = render "items/template_item"
