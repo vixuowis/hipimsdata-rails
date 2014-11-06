@@ -5,7 +5,6 @@ module ItemsHelper
 
   def vix_time(time)
     begin
-      ret_str = ""
       time = time.localtime
       if time.year == Time.now.year
         this_date = time.to_date
