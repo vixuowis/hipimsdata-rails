@@ -1,5 +1,7 @@
 .page-header 
   %h3 
+    %a{:href=>"/items"}数据一览
+    = "/"
     = "数据项 #{@item.name}"
     %button.btn.btn-danger.pull-right#item-delete{:type=>"button",:action=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 删除该数据项
 

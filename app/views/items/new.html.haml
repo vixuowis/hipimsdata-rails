@@ -1,6 +1,8 @@
 .page-header 
   %h3 
-    数据项已创建
+    %a{:href=>"/items"}数据一览
+    = "/"
+    创建数据项
     %i.glyphicon.glyphicon-ok{:style=>"color:green;font-size:20px;"}
     %button.btn.btn-danger.pull-right#item-delete{:type=>"button",:action=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 删除该数据项
 
