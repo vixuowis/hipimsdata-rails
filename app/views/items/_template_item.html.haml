@@ -1,14 +1,15 @@
 /基本信息
-= render "items/col1"
+%form.form-inline{action: "/update_item/#{@item.id}/1", method: 'post'}
+  = render "items/col1"
 
 .page-header 
   %h4 溅射实验基本参数
   - (1..2).each do |elem|
-    %form.form-inline{action: "/items?col=2&elem=1_#{elem}", method: 'post',:style=>"margin-bottom:10px;"}
+    %form.form-inline{action: "/update_item/#{@item.id}/2/?elem=1_#{elem}", method: 'post',:style=>"margin-bottom:10px;"}
       = render partial: "items/col2_1", locals: {elem: elem}
-  %form.form-inline{action: "/items?col=2&elem=2", method: 'post',:style=>"margin-bottom:10px;"}
+  %form.form-inline{action: "/update_item/#{@item.id}/2?elem=2", method: 'post',:style=>"margin-bottom:10px;"}
     = render "items/col2_2"
-  %form.form-inline{action: "/items?col=2&elem=3", method: 'post',:style=>"margin-bottom:10px;"}
+  %form.form-inline{action: "/update_item/#{@item.id}/2?elem=3", method: 'post',:style=>"margin-bottom:10px;"}
     = render "items/col2_3"
 
 .page-header 
@@ -19,15 +20,18 @@
 
 %p 
   精细谱
-  .btn.btn-xs.btn-primary 上传
+  - if @is_show != true
+    .btn.btn-xs.btn-primary 上传
 %br
 %p 
   全谱
-  .btn.btn-xs.btn-primary 上传
+  - if @is_show != true
+    .btn.btn-xs.btn-primary 上传
 
 .page-header 
   %h4 离子能量分布诊断 ( FLD )
 
 %p 
   离子能量分布谱
-  .btn.btn-xs.btn-primary 上传
+  - if @is_show != true
+    .btn.btn-xs.btn-primary 上传

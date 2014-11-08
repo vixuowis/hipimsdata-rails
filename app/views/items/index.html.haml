@@ -91,9 +91,9 @@
           %a.btn.btn-sm.btn-primary{:href=>"#",:style=>"margin-bottom:5px;"}
             %span.glyphicon.glyphicon-stats
             谱线
-          %a.btn.btn-sm.btn-info{:href=>"items/#{row[:id]}/edit",:style=>"margin-bottom:5px;"} 
-            %span.glyphicon.glyphicon-pencil
-            编辑
+          %a.btn.btn-sm.btn-info{:href=>"items/#{row[:id]}",:style=>"margin-bottom:5px;"} 
+            %span.glyphicon.glyphicon-search
+            详细
         / - row[:c3].each do |item|
         /   %th 
         /     = !item.nil? ? "#{item}" : "-"
@@ -104,7 +104,9 @@
         /   %th 
         /     = !item.nil? ? "#{item}" : "-"
 
-.pull-right
-  %a.btn.btn-success{:href=>"/items/new"}
-    %span.glyphicon.glyphicon-plus
-    新增一条数据
+.row
+  .col-lg-12
+    .pull-right
+      %a.btn.btn-success{:href=>"/items/new"}
+        %span.glyphicon.glyphicon-plus
+        新增一条数据

@@ -57,26 +57,45 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.create({:name=>Time.now.to_i})
-    @item.save
     redirect_to "/items/#{@item[:id]}/edit"
   end
 
   def show # show certain
-    redirect_to "/items/#{params[:id]}/edit"
+    find_item_and_process
   end
 
   def edit # edit certain
-    id = params[:id] rescue nil
-    @item = Item.find_by(id: id)
-    # redirect_to "/" if @item.nil?
+    find_item_and_process
   end
 
   def destroy
-    id = params[:id].to_i rescue nil
+    go_check_params
     item = Item.find_by(id: id)
-    if !item.nil?
-      item.destroy
+    item.destroy if !item.nil?
+  end
+
+  def update_item # update 
+    find_item_and_process
+    redirect_to "/items/#{params[:id]}/edit"
+  end
+
+  def go_check_params
+    begin
+      @id = params[:id].to_i
+    rescue 
+      redirect_to '/items'
     end
-    # redirect_to "/items"
+  end
+
+  def find_item_and_process()
+    go_check_params()
+    @item = Item.find_by(id: @id)
+
+    @col1 = JSON.parse(@item.c1) if @item.c1
+    @col2 = JSON.parse(@item.c2) if @item.c2
+    @col3 = JSON.parse(@item.c3) if @item.c3
+    @col4 = JSON.parse(@item.c4) if @item.c4
+    @col5 = JSON.parse(@item.c5) if @item.c5
   end
 end
+

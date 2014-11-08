@@ -4,6 +4,7 @@
     = "/"
     = "#{@item.name}"
     %button.btn.btn-danger.pull-right#item-delete{:type=>"button",:action=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 删除该数据项
+    %a.btn.btn-primary.pull-right#item-edit{:href=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 返回详细页面
     %small{:style=>"margin-left:20px;"}
       - if @item.updated_at > @item.created_at
         = "更新于 #{vix_time @item.updated_at}"

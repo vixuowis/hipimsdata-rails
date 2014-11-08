@@ -8,6 +8,7 @@ HipimsdataRails::Application.routes.draw do
   root 'home#index'
   resources :items
 
+  match '/update_item/:id/:col', to: 'items#update_item', via: 'post'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
