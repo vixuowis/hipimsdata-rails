@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
     items = Item.order("created_at desc").all
     @hipims_data = []
     items.each do |item|
+      puts "#{item.c1.to_s} #{item.c2.to_s} #{item.c3.to_s} #{item.c4.to_s} #{item.c5.to_s}"
       item_hash = {}
       item_hash[:id] = item.id
       @col1 = JSON.parse(item.c1) if item.c1 rescue []
@@ -11,37 +12,37 @@ class ItemsController < ApplicationController
       @col3 = JSON.parse(item.c3) if item.c3 rescue []
       @col4 = JSON.parse(item.c4) if item.c4 rescue []
       @col5 = JSON.parse(item.c5) if item.c5 rescue []
-      item_hash[:c1] = [nil]*3
+      item_hash[:c1] = [item.name,nil,nil]
       if !@col1.nil?
-        @col1.each_with_index do |item, index|
-          item_hash[:c1][index] = item[1] rescue nil
+        @col1.each_with_index do |i, index|
+          item_hash[:c1][index] = i[1] rescue nil
         end
       end
       item_hash[:c2] = [nil]*15
       if !@col2.nil?
-        @col2.each_with_index do |item, index|
-          item_hash[:c2][index] = item[1] rescue nil
+        puts "@col2 = #{@col2.to_s}"
+        @col2.each_with_index do |i, index|
+          item_hash[:c2][index] = i[1] rescue nil
         end
       end
       item_hash[:c3] = [nil]*5
       if !@col3.nil?
-        @col3.each_with_index do |item, index|
-          item_hash[:c3][index] = item[1] rescue nil
+        @col3.each_with_index do |i, index|
+          item_hash[:c3][index] = i[1] rescue nil
         end
       end
       item_hash[:c4] = [nil]*8
       if !@col4.nil?
-        @col4.each_with_index do |item, index|
-          item_hash[:c4][index] = item[1] rescue nil
+        @col4.each_with_index do |i, index|
+          item_hash[:c4][index] = i[1] rescue nil
         end
       end
       item_hash[:c5] = [nil]*2
       if !@col5.nil?
-        @col5.each_with_index do |item, index|
-          item_hash[:c5][index] = item[1] rescue nil
+        @col5.each_with_index do |i, index|
+          item_hash[:c5][index] = i[1] rescue nil
         end
       end
-      puts item.name
       @hipims_data.push(item_hash)
     end
     
