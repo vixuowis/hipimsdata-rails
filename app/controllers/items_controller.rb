@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
       puts "#{item.c1.to_s} #{item.c2.to_s} #{item.c3.to_s} #{item.c4.to_s} #{item.c5.to_s}"
       item_hash = {}
       item_hash[:id] = item.id
+      item_hash[:name] = item.name
       @col1 = JSON.parse(item.c1) if item.c1 rescue []
       @col2 = JSON.parse(item.c2) if item.c2 rescue []
       @col3 = JSON.parse(item.c3) if item.c3 rescue []
@@ -101,7 +102,7 @@ class ItemsController < ApplicationController
 
   def destroy
     go_check_params
-    item = Item.find_by(id: id)
+    item = Item.find_by(id: @id)
     item.destroy if !item.nil?
   end
 
