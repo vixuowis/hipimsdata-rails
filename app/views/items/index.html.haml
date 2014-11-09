@@ -81,7 +81,7 @@
   %tbody
     - @hipims_data.each do |row|
       %tr
-        - row[:c1].each_with_index do |item,index|
+        - row[:c1].each do |item|
           %th 
             = !item.nil? ? "#{item}" : "-"
         - row[:c2].each do |item|

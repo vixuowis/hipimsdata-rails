@@ -4,9 +4,9 @@
 
 .page-header 
   %h4 溅射实验基本参数
-  - (1..2).each do |elem|
-    %form.form-inline{action: "/update_item/#{@item.id}/2/?elem=1_#{elem}", method: 'post',:style=>"margin-bottom:10px;"}
-      = render partial: "items/col2_1", locals: {elem: elem}
+  - (1..2).each do |n|
+    %form.form-inline{action: "/update_item/#{@item.id}/2/?elem=1&n=#{n}", method: 'post',:style=>"margin-bottom:10px;"}
+      = render partial: "items/col2_1", locals: {n: n}
   %form.form-inline{action: "/update_item/#{@item.id}/2?elem=2", method: 'post',:style=>"margin-bottom:10px;"}
     = render "items/col2_2"
   %form.form-inline{action: "/update_item/#{@item.id}/2?elem=3", method: 'post',:style=>"margin-bottom:10px;"}

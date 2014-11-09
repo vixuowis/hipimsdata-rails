@@ -6,11 +6,41 @@ class ItemsController < ApplicationController
     items.each do |item|
       item_hash = {}
       item_hash[:id] = item.id
-      item_hash[:c1] = [item.name,nil,nil]
+      @col1 = JSON.parse(item.c1) if item.c1 rescue []
+      @col2 = JSON.parse(item.c2) if item.c2 rescue []
+      @col3 = JSON.parse(item.c3) if item.c3 rescue []
+      @col4 = JSON.parse(item.c4) if item.c4 rescue []
+      @col5 = JSON.parse(item.c5) if item.c5 rescue []
+      item_hash[:c1] = [nil]*3
+      if !@col1.nil?
+        @col1.each_with_index do |item, index|
+          item_hash[:c1][index] = item[1] rescue nil
+        end
+      end
       item_hash[:c2] = [nil]*15
+      if !@col2.nil?
+        @col2.each_with_index do |item, index|
+          item_hash[:c2][index] = item[1] rescue nil
+        end
+      end
       item_hash[:c3] = [nil]*5
+      if !@col3.nil?
+        @col3.each_with_index do |item, index|
+          item_hash[:c3][index] = item[1] rescue nil
+        end
+      end
       item_hash[:c4] = [nil]*8
+      if !@col4.nil?
+        @col4.each_with_index do |item, index|
+          item_hash[:c4][index] = item[1] rescue nil
+        end
+      end
       item_hash[:c5] = [nil]*2
+      if !@col5.nil?
+        @col5.each_with_index do |item, index|
+          item_hash[:c5][index] = item[1] rescue nil
+        end
+      end
       puts item.name
       @hipims_data.push(item_hash)
     end
@@ -76,6 +106,7 @@ class ItemsController < ApplicationController
 
   def update_item # update 
     find_item_and_process
+    update_col
     redirect_to "/items/#{params[:id]}/edit"
   end
 
@@ -91,11 +122,27 @@ class ItemsController < ApplicationController
     go_check_params()
     @item = Item.find_by(id: @id)
 
-    @col1 = JSON.parse(@item.c1) if @item.c1
-    @col2 = JSON.parse(@item.c2) if @item.c2
-    @col3 = JSON.parse(@item.c3) if @item.c3
-    @col4 = JSON.parse(@item.c4) if @item.c4
-    @col5 = JSON.parse(@item.c5) if @item.c5
+    @col1 = JSON.parse(@item.c1) if @item.c1 rescue []
+    @col2 = JSON.parse(@item.c2) if @item.c2 rescue []
+    @col3 = JSON.parse(@item.c3) if @item.c3 rescue []
+    @col4 = JSON.parse(@item.c4) if @item.c4 rescue []
+    @col5 = JSON.parse(@item.c5) if @item.c5 rescue []
+  end
+
+  def update_col
+    col = params[:col]
+    val = params[:val]
+    val_arr = []
+    begin
+      if col == "1" and !val['no'].nil?
+        @item.name = val['no'] ; 
+        @item.save;
+      end
+    rescue
+    end
+    val_json = val.to_json
+    @item.update_column("c#{col}".to_sym, val_json)
+    @item.save
   end
 end
 
