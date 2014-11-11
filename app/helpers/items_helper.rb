@@ -16,18 +16,15 @@ module ItemsHelper
         when 18..20 then daystep = "傍晚"
         when 21..23 then daystep = "晚上"
       end
-      
+
       if time.year == Time.now.year
         this_date = time.to_date
         today = Time.now.localtime.to_date
-        if this_date == today
-          time.strftime("今天#{daystep} %T")
-        elsif this_date == today.yesterday
-          time.strftime("昨天#{daystep} %T")
-        elsif this_date == today.yesterday.yesterday
-          time.strftime("前天#{daystep} %T")
-        else
-          time.strftime("%m-%d #{daystep} %T")
+        case this_date
+          when today then time.strftime("今天#{daystep} %T")
+          when today.yesterday then time.strftime("昨天#{daystep} %T")
+          when today.yesterday.yesterday then time.strftime("前天#{daystep} %T")
+          else time.strftime("%m-%d #{daystep} %T")
         end
       else
         time.strftime("%F #{daystep} %T")
