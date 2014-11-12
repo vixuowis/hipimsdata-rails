@@ -1,15 +1,16 @@
 .form-group{:style=>"margin-top:24px;"}
   %span.label.label-info{:style=>"font-size:14px;"} 
     = "其余参数"
+- this_col = @col2["elem3"] rescue nil
 .form-group{:style=>"margin-left:10px;"}
   %label{:for=>"c2-elem-zhenkong"} 本底真空
-  %input.form-control.col-sm-1#c2-elem-zhenkong{:name=>"val[zhenkong]"}
+  %input.form-control.col-sm-1#c2-elem-zhenkong{:name=>"val[elem3][zhenkong]",:value=>"#{this_col["zhenkong"] rescue nil}"}
 .form-group{:style=>"margin-left:10px;"}
   %label{:for=>"c2-elem-pianya"} 基底偏压
-  %input.form-control.col-sm-1#c2-elem-pianya{:name=>"val[pianya]"}
+  %input.form-control.col-sm-1#c2-elem-pianya{:name=>"val[elem3][pianya]",:value=>"#{this_col["pianya"] rescue nil}"}
 .form-group{:style=>"margin-left:10px;"}
   %label{:for=>"c2-elem-qiya"} 工作气压
-  %input.form-control.col-sm-1#c2-elem-qiya{:name=>"val[qiya]"}
+  %input.form-control.col-sm-1#c2-elem-qiya{:name=>"val[elem3][qiya]",:value=>"#{this_col["qiya"] rescue nil}"}
 - if current_page? "/items/#{@item.id}/edit"
   .form-group{:style=>"margin-left:10px; margin-top:24px"}
     %input.btn.btn-primary{:type=>"submit",:value=>"保存"}

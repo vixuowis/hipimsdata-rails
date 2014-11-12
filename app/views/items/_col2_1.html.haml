@@ -1,18 +1,19 @@
 .form-group{:style=>"margin-top:24px; width:75px;"}
   %span.label.label-info{:style=>"font-size:14px;"} 
     = "靶材 #{n}"
+- this_col = @col2["elem1_#{n}"] rescue nil
 .form-group{:style=>"margin-left:10px;"}
   %label{:for=>"c2-elem-name"} 名称
-  %input.form-control.col-sm-1#c2-elem-name{:placeholder=>"靶材#{n}名称",:name=>"val[name]"}
+  %input.form-control.col-sm-1#c2-elem-name{:placeholder=>"靶材#{n}名称",:name=>"val[elem1_#{n}][name]",:value=>"#{this_col["name"]rescue nil}"}
 .form-group{:style=>"margin-left:10px;"}
   %label{:for=>"c2-elem-v"} 电压
-  %input.form-control.col-sm-1#c2-elem-v{:placeholder=>"V",:name=>"val[v]"}
+  %input.form-control.col-sm-1#c2-elem-v{:placeholder=>"V",:name=>"val[elem1_#{n}][v]",:value=>"#{this_col["v"] rescue nil}"}
 .form-group{:style=>"margin-left:10px;"}
   %label{:for=>"c2-elem-a"} 电流
-  %input.form-control.col-sm-1#c2-elem-a{:placeholder=>"A",:name=>"val[a]"}
+  %input.form-control.col-sm-1#c2-elem-a{:placeholder=>"A",:name=>"val[elem1_#{n}][a]",:value=>"#{this_col["a"] rescue nil}"}
 .form-group{:style=>"margin-left:10px;"}
   %label{:for=>"c2-elem-w"} 功率
-  %input.form-control.col-sm-1#c2-elem-w{:placeholder=>"W",:name=>"val[w]"}
+  %input.form-control.col-sm-1#c2-elem-w{:placeholder=>"W",:name=>"val[elem1_#{n}][w]",:value=>"#{this_col["w"] rescue nil}"}
 - if current_page? "/items/#{@item.id}/edit"
   .form-group{:style=>"margin-left:10px; margin-top:24px"}
     %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
