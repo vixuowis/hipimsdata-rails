@@ -14,7 +14,10 @@
 
 .page-header 
   %h4 朗缪尔探针参数
-
+  %form.form-inline{action: "/update_item/#{@item.id}/3?elem=1", method: 'post',:style=>"margin-bottom:10px;"}
+    = render "items/col3_1"
+  %form.form-inline{action: "/update_item/#{@item.id}/3?elem=2", method: 'post'}
+    = render "items/col3_2"
 .page-header
   %h4 等离子体发射诊断 ( OES )
 

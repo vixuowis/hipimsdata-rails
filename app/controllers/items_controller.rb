@@ -103,6 +103,9 @@ class ItemsController < ApplicationController
       elsif col == "2"
         val_old = JSON.parse(@item.c2)
         val = val_old.merge(val)
+      elsif col == "3"
+        val_old = JSON.parse(@item.c3)
+        val = val_old.merge(val)
       end
     rescue
     end
