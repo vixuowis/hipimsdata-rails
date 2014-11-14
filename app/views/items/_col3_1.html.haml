@@ -1,0 +1,13 @@
+.form-group{:style=>"margin-top:24px;"}
+  %span.label.label-info{:style=>"font-size:14px;"} 
+    = "探针参数"
+- this_col = @col3["elem1"] rescue nil
+.form-group{:style=>"margin-left:37px;"}
+  %label{:for=>"c3-elem-bajiju"} 靶基距
+  %input.form-control.col-sm-1#c3-elem-bajiju{:name=>"val[elem1][bajiju]",:value=>"#{this_col["bajiju"] rescue nil}"}
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c3-elem-mianji"} 表面积A
+  %input.form-control.col-sm-1#c3-elem-mianji{:name=>"val[elem1][mianji]",:value=>"#{this_col["mianji"] rescue nil}"}
+- if current_page? "/items/#{@item.id}/edit"
+  .form-group{:style=>"margin-left:10px; margin-top:24px"}
+    %input.btn.btn-primary{:type=>"submit",:value=>"保存"}

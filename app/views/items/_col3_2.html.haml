@@ -1,0 +1,19 @@
+.form-group{:style=>"margin-top:24px;"}
+  %span.label.label-info{:style=>"font-size:14px;"} 
+    = "电子特征参数"
+- this_col = @col3["elem2"] rescue nil
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-baohe"} 饱和电子电流
+  %input.form-control.col-sm-1#c2-elem-baohe{:name=>"val[elem2][baohe]",:value=>"#{this_col["baohe"] rescue nil}"}
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-midu"} 电子密度
+  %input.form-control.col-sm-1#c2-elem-midu{:name=>"val[elem2][midu]",:value=>"#{this_col["midu"] rescue nil}"}
+.form-group{:style=>"margin-left:10px;"}
+  %label{:for=>"c2-elem-wendu"} 电子温度
+  %input.form-control.col-sm-1#c2-elem-wendu{:name=>"val[elem2][wendu]",:value=>"#{this_col["wendu"] rescue nil}"}
+- if current_page? "/items/#{@item.id}/edit"
+  .form-group{:style=>"margin-left:10px; margin-top:24px"}
+    %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
+
+/    探针参数		电子特征参数		
+/ 靶基距	表面积A	饱和电子电流	电子密度	电子温度
