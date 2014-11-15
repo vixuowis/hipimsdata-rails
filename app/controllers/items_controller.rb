@@ -114,5 +114,6 @@ class ItemsController < ApplicationController
     @item.updated_at = Time.now
     @item.save
   end
+  
 end
 
