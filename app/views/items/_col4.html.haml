@@ -20,8 +20,18 @@
       %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
 
 %div{:style=>"margin-left:90px;margin-bottom:20px;"}
-  精细谱
-  .btn.btn-sm.btn-primary 上传
-  %span{:style=>"margin-left:20px;"}
-  全谱
-  .btn.btn-sm.btn-primary 上传
+  = form_tag({action: :upload_file}, multipart: true, class: "form-inline") do
+    .form-group
+      %label{:for=>"c4_fine"} 精细谱
+    .form-group
+      = file_field_tag 'c4_fine', :style=>"margin-left:10px;"
+    .form-group
+      %input.btn.btn-xs.btn-primary{:type=>"submit",:value=>"上传"}
+  = form_tag({action: :upload_file}, multipart: true, class: "form-inline") do
+    .form-group
+      %label{:for=>"c4_whole"} 全谱
+    .form-group
+      = file_field_tag 'c4_whole', :style=>"margin-left:24px;"
+    .form-group
+      %input.btn.btn-xs.btn-primary{:type=>"submit",:value=>"上传"}
+

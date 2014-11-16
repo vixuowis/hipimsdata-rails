@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'fileutils'
+
 class ItemsController < ApplicationController
   def index
     items = Item.order("created_at desc")
@@ -119,6 +121,20 @@ class ItemsController < ApplicationController
     @item.update_column("c#{col}".to_sym, val_json)
     @item.updated_at = Time.now
     @item.save
+  end
+
+  def upload_file
+    if !params['c4_whole'].nil?
+      tmp = params['c4_whole']
+    elsif !params['c4_fine'].nil?
+      tmp = params['c4_fine']
+    end
+    
+    File.open(Rails.root.join('public', 'uploads', tmp.original_filename), 'wb') do |file|
+      file.write(tmp.read)
+    end
+
+    redirect_to "/items/#{params[:id]}/edit"
   end
 
 end

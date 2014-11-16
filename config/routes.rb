@@ -9,6 +9,7 @@ HipimsdataRails::Application.routes.draw do
   resources :items
 
   match '/update_item/:id/:col', to: 'items#update_item', via: 'post'
+  match '/upload_file/:id', to: 'items#upload_file', via: 'post'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
