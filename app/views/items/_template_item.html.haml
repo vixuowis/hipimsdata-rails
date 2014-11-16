@@ -4,37 +4,26 @@
 
 .page-header 
   %h4 溅射实验基本参数
-  - (1..2).each do |n|
-    %form.form-inline{action: "/update_item/#{@item.id}/2/?elem=1&n=#{n}", method: 'post',:style=>"margin-bottom:10px;"}
-      = render partial: "items/col2_1", locals: {n: n}
-  %form.form-inline{action: "/update_item/#{@item.id}/2?elem=2", method: 'post',:style=>"margin-bottom:10px;"}
-    = render "items/col2_2"
-  %form.form-inline{action: "/update_item/#{@item.id}/2?elem=3", method: 'post',:style=>"margin-bottom:10px;"}
-    = render "items/col2_3"
+- (1..2).each do |n|
+  %form.form-inline{action: "/update_item/#{@item.id}/2/?elem=1&n=#{n}", method: 'post',:style=>"margin-bottom:10px;"}
+    = render partial: "items/col2_1", locals: {n: n}
+%form.form-inline{action: "/update_item/#{@item.id}/2?elem=2", method: 'post',:style=>"margin-bottom:10px;"}
+  = render "items/col2_2"
+%form.form-inline{action: "/update_item/#{@item.id}/2?elem=3", method: 'post',:style=>"margin-bottom:10px;"}
+  = render "items/col2_3"
 
 .page-header 
   %h4 朗缪尔探针参数
-  %form.form-inline{action: "/update_item/#{@item.id}/3?elem=1", method: 'post',:style=>"margin-bottom:10px;"}
-    = render "items/col3_1"
-  %form.form-inline{action: "/update_item/#{@item.id}/3?elem=2", method: 'post'}
-    = render "items/col3_2"
+%form.form-inline{action: "/update_item/#{@item.id}/3?elem=1", method: 'post',:style=>"margin-bottom:10px;"}
+  = render "items/col3_1"
+%form.form-inline{action: "/update_item/#{@item.id}/3?elem=2", method: 'post'}
+  = render "items/col3_2"
+
 .page-header
   %h4 等离子体发射诊断 ( OES )
-
-%p 
-  精细谱
-  - if @is_show != true
-    .btn.btn-xs.btn-primary 上传
-%br
-%p 
-  全谱
-  - if @is_show != true
-    .btn.btn-xs.btn-primary 上传
+- (1..2).each do |n|
+  = render partial: "items/col4", locals: {n: n}
 
 .page-header 
   %h4 离子能量分布诊断 ( FLD )
-
-%p 
-  离子能量分布谱
-  - if @is_show != true
-    .btn.btn-xs.btn-primary 上传
+= render "items/col5"

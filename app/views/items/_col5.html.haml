@@ -1,0 +1,18 @@
+%form.form-inline{action: "/update_item/#{@item.id}/5", method: 'post',:style=>"margin-bottom:10px;"}
+  .form-group{:style=>"margin-top:24px;"}
+    %span.label.label-info{:style=>"font-size:14px;"} 
+      = "参数"
+  - this_col = @col5 rescue nil
+  .form-group{:style=>"margin-left:37px;"}
+    %label{:for=>"c5-dianliu"} 离子平均电流
+    %input.form-control.col-sm-1#c5-dianliu{:name=>"val[dianliu]",:value=>"#{this_col["dianliu"] rescue nil}"}
+  .form-group{:style=>"margin-left:10px;"}
+    %label{:for=>"c5-nengliang"} 离子平均能量
+    %input.form-control.col-sm-1#c5-nengliang{:name=>"val[nengliang]",:value=>"#{this_col["nengliang"] rescue nil}"}
+  - if current_page? "/items/#{@item.id}/edit"
+    .form-group{:style=>"margin-left:10px; margin-top:24px"}
+      %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
+
+%div{:style=>"margin-left:90px;margin-bottom:20px;"}
+  离子能量分布谱
+  .btn.btn-sm.btn-primary 上传
