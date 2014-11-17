@@ -140,6 +140,8 @@ class ItemsController < ApplicationController
       elsif !params['c5_ion'].nil?
         tmp = params['c5_ion']
         name = "c5_ion"
+      else 
+        redirect_to "/items/#{params[:id]}/edit"
       end
       
       json_data = []
@@ -157,6 +159,7 @@ class ItemsController < ApplicationController
         puts "create"
         Graph.create({:item_id=>params[:id].to_i, :name=>name, :data=>json_data.to_json})
       end
+      Item.find_by(id: params[:id].to_i).touch
     rescue
     end
     # File.open(Rails.root.join('public', 'uploads', tmp.original_filename), 'wb') do |file|
