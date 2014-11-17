@@ -1,79 +1,41 @@
-#canvas-oes-whole
+%div{id: "canvas-oes-whole-#{n}"}
 :javascript
   $(function () {
-    $('#canvas-oes-whole').highcharts({
-      chart: {
-            type: 'spline'
-      },
-      title: {
-          text: '全谱'
-      },
-      xAxis: {
-          // dateTimeLabelFormats: { // don't display the dummy year
-          //    month: '%e. %b',
-          //    year: '%b'
-          //},
+    $('#canvas-oes-whole-#{n}').hide()
+    $.getJSON('/read_graph/#{@item.id}/c4_whole_#{n}', function (json_data) {
+      if(json_data.length){
+        $('#canvas-oes-whole-#{n}').show()
+        $('#canvas-oes-whole-#{n}').highcharts({
+          chart: {
+                type: 'line'
+          },
           title: {
-              text: 'Wavelength, nm'
-          }
-      },
-      yAxis: {
-        title:{
-          text: 'OES Intensity'
-        }
-      },
-      tooltip: {
-          headerFormat: '<b>{series.name}</b><br>',
-          pointFormat: '{point.x: .2f}, {point.y}'
-      },
-      series: [{
-          name: '元素 1',
-          data: [
-              [360.36,0.04716],
-              [360.8,0.01803],
-              [361.25,0.05548],
-              [361.7,0],
-              [362.15,0.02913],
-              [362.6,0.10818],
-              [363.05,0.17615],
-              [363.5,0.28849],
-              [363.95,0.36338],
-              [364.39,0.45909],
-              [364.84,0.57004],
-              [365.29,0.69071],
-              [365.74,0.69764],
-              [366.19,0.57697],
-              [366.64,0.43412],
-              [367.08,0.36754],
-              [367.53,0.32316],
-              [367.98,0.28571],
-              [368.43,0.31068],
-              [368.88,0.3828],
-              [369.33,0.39806],
-              [369.77,0.34258],
-              [370.22,0.3398],
-              [370.67,0.23856],
-              [371.12,0.0846],
-              [371.57,0.10125],
-              [372.01,0.14009],
-              [372.46,0.14702],
-              [372.91,0.24272],
-              [373.36,0.27323],
-              [373.81,0.34536],
-              [374.25,0.47573],
-              [374.7,0.50486],
-              [375.15,0.65742],
-              [375.6,0.8086],
-              [376.04,0.9889],
-              [376.49,1],
-              [376.94,0.97919],
-              [377.39,0.82524],
-              [377.83,0.63662],
-              [378.28,0.3731],
-              [378.73,0.15811],
-              [379.18,0.05964],
-              [379.62,0.05964]
-          ]
-      }]
+              text: '全谱'
+          },
+          xAxis: {
+              // dateTimeLabelFormats: { // don't display the dummy year
+              //    month: '%e. %b',
+              //    year: '%b'
+              //},
+              title: {
+                  text: 'Wavelength, nm'
+              }
+          },
+          yAxis: {
+            title:{
+              text: 'OES Intensity'
+            }
+          },
+          tooltip: {
+              headerFormat: '<b>{series.name}</b><br>',
+              pointFormat: '{point.x: .2f}, {point.y}'
+          },
+          series: [{
+              name: '元素 #{n}',          
+              data: json_data
+          }]
+        });
+      }
     });
   });
+

@@ -12,7 +12,13 @@
   - if current_page? "/items/#{@item.id}/edit"
     .form-group{:style=>"margin-left:10px; margin-top:24px"}
       %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
+- if current_page? "/items/#{@item.id}/edit"
+  %div{:style=>"margin-left:90px;margin-bottom:20px;"}
+    = form_tag({action: :upload_file}, multipart: true, class: "form-inline") do
+      .form-group
+        %label{:for=>"c5_ion"} 离子能量分布谱
+      .form-group
+        = file_field_tag 'c5_ion', :style=>"margin-left:24px;"
+      .form-group
+        %input.btn.btn-xs.btn-primary{:type=>"submit",:value=>"上传"}
 
-%div{:style=>"margin-left:90px;margin-bottom:20px;"}
-  离子能量分布谱
-  .btn.btn-sm.btn-primary 上传

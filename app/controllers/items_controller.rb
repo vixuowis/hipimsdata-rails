@@ -124,17 +124,54 @@ class ItemsController < ApplicationController
   end
 
   def upload_file
-    if !params['c4_whole'].nil?
-      tmp = params['c4_whole']
-    elsif !params['c4_fine'].nil?
-      tmp = params['c4_fine']
+    begin
+      if !params['c4_whole_1'].nil?
+        tmp = params['c4_whole_1'];
+        name = "c4_whole_1"
+      elsif !params['c4_fine_1'].nil?
+        tmp = params['c4_fine_1']
+        name = "c4_fine_1"
+      elsif !params['c4_whole_2'].nil?
+        tmp = params['c4_whole_2']
+        name = "c4_whole_2"
+      elsif !params['c4_fine_2'].nil?
+        tmp = params['c4_fine_2']
+        name = "c4_fine_2"
+      elsif !params['c5_ion'].nil?
+        tmp = params['c5_ion']
+        name = "c5_ion"
+      end
+      
+      json_data = []
+      tmp.read.each_line do |l|
+        data_row = l.split(/\t| /).map(&:strip).map(&:to_f)
+        json_data.push(data_row)
+      end
+      # puts json_data.to_s
+      graph_old = Graph.find_by(item_id: params['id'].to_i, name: name)
+      if !graph_old.nil?
+        puts "update"
+        graph_old.data = json_data.to_json
+        graph_old.save
+      else
+        puts "create"
+        Graph.create({:item_id=>params[:id].to_i, :name=>name, :data=>json_data.to_json})
+      end
+    rescue
     end
-    
-    File.open(Rails.root.join('public', 'uploads', tmp.original_filename), 'wb') do |file|
-      file.write(tmp.read)
-    end
-
+    # File.open(Rails.root.join('public', 'uploads', tmp.original_filename), 'wb') do |file|
+    #   file.write(tmp.read)
+    # end
     redirect_to "/items/#{params[:id]}/edit"
+  end
+
+  def read_graph
+    result = Graph.find_by(item_id: params['id'].to_i, name: params['name']).data rescue []
+    puts result.to_s
+    respond_to do |format|
+      format.json{render :json=>result}
+      format.html{render :json=>result}
+    end
   end
 
 end

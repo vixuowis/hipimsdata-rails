@@ -1,5 +1,5 @@
 /基本信息
-%form.form-inline{action: "/update_item/#{@item.id}/1", method: 'post'}
+%form.form-inline{action: "/update_item/#{@item.id}/1", method: 'post', :style=>"margin-top:100px;"}
   = render "items/col1"
 
 .page-header 
@@ -23,11 +23,6 @@
   %h4 等离子体发射诊断 ( OES )
 - (1..2).each do |n|
   = render partial: "items/col4", locals: {n: n}
-.row
-  .col-lg-6
-    = render "items/oes_fine"
-  .col-lg-6
-    = render "items/oes_whole"
 
 .page-header 
   %h4 离子能量分布诊断 ( FLD )
