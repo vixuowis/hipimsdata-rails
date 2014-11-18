@@ -61,6 +61,17 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.create({:name=>Time.now.to_i})
+    current_id = @item.id
+    while true
+      begin
+        @item.name = current_id
+        @item.save
+      rescue
+        current_id += 1
+        next
+      end
+      break
+    end
     redirect_to "/items/#{@item[:id]}/edit"
   end
 
