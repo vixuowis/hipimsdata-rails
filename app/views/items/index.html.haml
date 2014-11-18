@@ -8,6 +8,7 @@
         %span.label.label-info 实验名称
       %th{:colspan=>15,:style=>"font-size:20px;"} 
         %span.label.label-success 基本参数设定
+      %th{:colspan=>1,:style=>"font-size:20px;"} 
 
       / %th{:colspan=>5,:style=>"font-size:20px;min-width:180px"} 
       /   %span.label.label-danger 朗缪尔探针诊断
@@ -23,12 +24,12 @@
           - if !params['o'].nil?
             %span.caret
       %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 薄膜名称
-      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 主要元素
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5);border-right: 1px solid #dddddd;"} 主要元素
       / c2
-      %th.success{:colspan=>4} 靶材1
-      %th.success{:colspan=>4} 靶材2
-      %th.success{:colspan=>4} 气体流量
-      %th.success{:colspan=>3,:style=>"min-width:200px;"} 其余参数
+      %th.success{:colspan=>4,:style=>"border-right: 1px solid #dddddd;"} 靶材1
+      %th.success{:colspan=>4,:style=>"border-right: 1px solid #dddddd;"} 靶材2
+      %th.success{:colspan=>4,:style=>"border-right: 1px solid #dddddd;"} 气体流量
+      %th.success{:colspan=>3,:style=>"min-width:200px;border-right: 1px solid #dddddd;"} 其余参数
 
       %th{:colspan=>1,:rowspan=>2, :style=>"vertical-align:middle;"} 操作
 
@@ -47,21 +48,21 @@
       %th.success 名称
       %th.success 电压
       %th.success 电流
-      %th.success 功率
+      %th.success{:style=>"border-right: 1px solid #dddddd;"} 功率
 
       %th.success 名称
       %th.success 电压
       %th.success 电流
-      %th.success 功率
+      %th.success{:style=>"border-right: 1px solid #dddddd;"} 功率
 
       %th.success 氩气
       %th.success 氮气
       %th.success 氧气
-      %th.success 甲烷
+      %th.success{:style=>"border-right: 1px solid #dddddd;"} 甲烷
 
       %th.success 本底真空
       %th.success 基底偏压
-      %th.success 工作气压
+      %th.success{:style=>"border-right: 1px solid #dddddd;"} 工作气压
 
       / / c3
       / %th.danger 靶基距
@@ -86,18 +87,22 @@
     - @hipims_data.each do |row|
       %tr
         - row[:c1].each_with_index do |item,index|
-          %th 
+          %th{:style=>"#{'border-right: 1px solid #dddddd;' if index==2}"}
             -if index==0
               = row[:name]
             - else
               = !item.nil? ? "#{item}" : "-"
-        - row[:c2].each do |item|
-          %th 
-            = !item.nil? ? "#{item}" : "-"
+        - row[:c2].each_with_index do |item,index|
+          - if index==3 or index== 7 or index==11 or index==14
+            %th{:style=>"border-right: 1px solid #dddddd;"}
+              = !item.nil? ? "#{item}" : "-"
+          - else
+            %th
+              = !item.nil? ? "#{item}" : "-"
         %th
-          %a.btn.btn-sm.btn-primary{:href=>"#",:style=>"margin-bottom:5px;"}
-            %span.glyphicon.glyphicon-stats
-            谱线
+          / %a.btn.btn-sm.btn-primary{:href=>"#",:style=>"margin-bottom:5px;"}
+          /   %span.glyphicon.glyphicon-stats
+          /   谱线
           %a.btn.btn-sm.btn-info{:href=>"items/#{row[:id]}",:style=>"margin-bottom:5px;"} 
             %span.glyphicon.glyphicon-search
             详细

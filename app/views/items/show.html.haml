@@ -3,12 +3,12 @@
     %a{:href=>"/items"}数据一览
     = "/"
     = "#{@item.name}"
-    %button.btn.btn-danger.pull-right#item-delete{:type=>"button",:action=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 删除该数据项
-    %a.btn.btn-info.pull-right#item-edit{:href=>"/items/#{@item.id}/edit",:style=>"margin-left:10px;"} 编辑该数据项
     %small{:style=>"margin-left:20px;"}
       - if @item.updated_at > @item.created_at
         = "更新于 #{vix_time @item.updated_at}"
         %span{:style=>"margin-right:10px;"}
       = "创建于 #{vix_time @item.created_at}"
+    %a.btn.btn-info#item-edit{:href=>"/items/#{@item.id}/edit",:style=>"margin-left:20px;"} 编辑该数据项
+    %button.btn.btn-danger.pull-right#item-delete{:type=>"button",:action=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 删除该数据项
 
 = render "items/template_item"
