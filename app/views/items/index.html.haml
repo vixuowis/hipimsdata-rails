@@ -17,7 +17,11 @@
       /   %span.label{:style=>"background-color:dodgerblue"} 法拉第杯诊断
     %tr
       / c1
-      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 序号
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="n_asc" ? "n_desc" : "n_asc"}", :class=>"#{"dropup" if params['o']=="n_asc"}"}
+          序号
+          - if !params['o'].nil?
+            %span.caret
       %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 薄膜名称
       %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 主要元素
       / c2

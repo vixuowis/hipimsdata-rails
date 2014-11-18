@@ -4,6 +4,11 @@ require 'fileutils'
 class ItemsController < ApplicationController
   def index
     items = Item.order("created_at desc")
+    if params[:o] == "n_asc"
+      items = items.reorder("name asc")
+    elsif params[:o] == "n_desc" 
+      items = items.reorder("name desc")
+    end
     @hipims_data = []
     items.each do |item|
       puts "#{item.c1.to_s} #{item.c2.to_s}"
