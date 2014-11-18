@@ -6,5 +6,5 @@ $ ->
   $(document).on('click', '#item-delete', ( ->
     # alert $(this).attr("action")
     $.destroy($(this).attr("action"))
-    window.open("/items","_self")
+    window.open("/items?o=n_asc","_self")
   ));

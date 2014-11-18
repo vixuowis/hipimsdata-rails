@@ -87,7 +87,6 @@ class ItemsController < ApplicationController
     go_check_params
     item = Item.find_by(id: @id)
     item.destroy if !item.nil?
-    redirect_to "/items?o=n_asc"
   end
 
   def update_item # update 
