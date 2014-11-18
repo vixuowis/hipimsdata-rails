@@ -87,6 +87,9 @@ class ItemsController < ApplicationController
     go_check_params
     item = Item.find_by(id: @id)
     item.destroy if !item.nil?
+    respond_to do |format|
+      format.json{render :json=>"success"}
+    end
   end
 
   def update_item # update 

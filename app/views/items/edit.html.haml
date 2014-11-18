@@ -9,6 +9,6 @@
         %span{:style=>"margin-right:10px;"}
       = "创建于 #{vix_time @item.created_at}"
     %a.btn.btn-primary#item-edit{:href=>"/items/#{@item.id}",:style=>"margin-left:20px;"} 返回详细页面
-    %button.btn.btn-danger.pull-right#item-delete{:type=>"button",:action=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 删除该数据项
+    %a.btn.btn-danger.pull-right#item-delete{:type=>"button",:action=>"/items/#{@item.id}",:style=>"margin-left:10px;"} 删除该数据项
 
 = render "items/template_item"
