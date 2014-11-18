@@ -4,11 +4,11 @@ require 'fileutils'
 class ItemsController < ApplicationController
   def index
     items = Item.order("created_at desc")
-    if params[:o] == "n_asc"
-      items = items.reorder("name asc")
-    elsif params[:o] == "n_desc" 
-      items = items.reorder("name desc")
-    end
+    # if params[:o] == "n_asc"
+    #   items = items.reorder("name asc")
+    # elsif params[:o] == "n_desc" 
+    #   items = items.reorder("name desc")
+    # end
     @hipims_data = []
     items.each do |item|
       puts "#{item.c1.to_s} #{item.c2.to_s}"
@@ -35,6 +35,12 @@ class ItemsController < ApplicationController
       puts item_hash.to_s
       @hipims_data.push(item_hash)
     end
+    if params[:o] == "n_asc"
+      @hipims_data.sort! {|a,b| a[:name].to_i <=> b[:name].to_i}
+    elsif params[:o] == "n_desc" 
+      @hipims_data.sort! {|a,b| b[:name].to_i <=> a[:name].to_i}
+    end
+    
   end
 
   def fit_item(num, col, elem_str)
