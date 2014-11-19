@@ -1,13 +1,15 @@
 .page-header
-  %h3 数据一览
+  %h3 数据库
 
 %table.table.table-striped.table-hover#tb-overview
   %thead
     %tr
       %th{:colspan=>3,:style=>"font-size:20px;"} 
         %span.label.label-info 实验名称
-      %th{:colspan=>15,:style=>"font-size:20px;"} 
+      %th{:colspan=>7,:style=>"font-size:20px;"} 
         %span.label.label-success 基本参数设定
+      %th{:colspan=>7,:style=>"font-size:20px;"} 
+        %span.label{:style=>"background-color:dodgerblue"} 等离子体参数
       %th{:colspan=>1,:style=>"font-size:20px;"} 
 
       / %th{:colspan=>5,:style=>"font-size:20px;min-width:180px"} 
@@ -26,66 +28,48 @@
       %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 薄膜名称
       %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5);border-right: 1px solid #dddddd;"} 主要元素
       / c2
-      %th.success{:colspan=>4,:style=>"border-right: 1px solid #dddddd;"} 靶材1
-      %th.success{:colspan=>4,:style=>"border-right: 1px solid #dddddd;"} 靶材2
-      %th.success{:colspan=>4,:style=>"border-right: 1px solid #dddddd;"} 气体流量
-      %th.success{:colspan=>3,:style=>"min-width:200px;border-right: 1px solid #dddddd;"} 其余参数
+      %th.success{:colspan=>3,:style=>"border-right: 1px solid #dddddd;"} 靶材1
+      / %th.success{:colspan=>4,:style=>"border-right: 1px solid #dddddd;"} 靶材2
+      %th.success{:colspan=>2,:style=>"border-right: 1px solid #dddddd;"} 气体流量
+      %th.success{:colspan=>2,:style=>"min-width:200px;border-right: 1px solid #dddddd;"} 其余参数
+
+      / c3
+      %th.danger{:colspan=>3,:style=>"min-width:80px; border-right: 1px solid #dddddd;"} 朗缪尔探针参数
+      / %th.danger{:colspan=>3,:style=>"min-width:100px"} 电子特征参数
+      / c4
+      %th.warning{:colspan=>2,:style=>"border-right: 1px solid #dddddd;"} 等离子体发射诊断
+      / c5 
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 离子平均电流 (A)
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5);border-right: 1px solid #dddddd;"} 离子平均能量 (eV)
 
       %th{:colspan=>1,:rowspan=>2, :style=>"vertical-align:middle;"} 操作
-
-      / / c3
-      / %th.danger{:colspan=>2,:style=>"min-width:80px"} 探针参数
-      / %th.danger{:colspan=>3,:style=>"min-width:100px"} 电子特征参数
-      / / c4
-      / %th.warning{:colspan=>4} 元素1定量分析
-      / %th.warning{:colspan=>4} 元素2定量分析
-      / / c5 
-      / %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 离子平均电流
-      / %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 离子平均能量
-
     %tr
       / c2
       %th.success 名称
-      %th.success 电压
-      %th.success 电流
-      %th.success{:style=>"border-right: 1px solid #dddddd;"} 功率
+      %th.success 电压 (V)
+      %th.success{:style=>"border-right: 1px solid #dddddd;"} 电流 (A)
 
-      %th.success 名称
-      %th.success 电压
-      %th.success 电流
-      %th.success{:style=>"border-right: 1px solid #dddddd;"} 功率
+      %th.success 氩气 (sccm)
+      %th.success{:style=>"border-right: 1px solid #dddddd;"} 氮气 (sccm)
 
-      %th.success 氩气
-      %th.success 氮气
-      %th.success 氧气
-      %th.success{:style=>"border-right: 1px solid #dddddd;"} 甲烷
+      %th.success 基底偏压 (V)
+      %th.success{:style=>"border-right: 1px solid #dddddd;"} 工作气压 (Pa)
 
-      %th.success 本底真空
-      %th.success 基底偏压
-      %th.success{:style=>"border-right: 1px solid #dddddd;"} 工作气压
-
-      / / c3
+      / c3
       / %th.danger 靶基距
       / %th.danger 表面积A
 
-      / %th.danger 饱和电子电流
-      / %th.danger 电子密度
-      / %th.danger 电子温度
+      %th.danger 饱和电子电流 (A)
+      %th.danger 电子密度 (cm^-3)
+      %th.danger{:style=>"border-right: 1px solid #dddddd;"} 电子温度 (eV)
 
-      / / c4
-      / %th.warning 元素名称
-      / %th.warning 原子
-      / %th.warning 离子
-      / %th.warning 离化程度
-
-      / %th.warning 元素名称
-      / %th.warning 原子
-      / %th.warning 离子
-      / %th.warning 离化程度
+      / c4
+      %th.warning 元素名称
+      %th.warning{:style=>"border-right: 1px solid #dddddd;"} 离化程度
 
   %tbody
-    - @hipims_data.each do |row|
-      %tr
+    - @hipims_data.each_with_index do |row,index|
+      %tr{:style=>"#{'border-bottom: 1px solid #dddddd;' if index==@hipims_data.length-1}"}
         - row[:c1].each_with_index do |item,index|
           %th{:style=>"#{'border-right: 1px solid #dddddd;' if index==2}"}
             -if index==0
@@ -93,7 +77,14 @@
             - else
               = !item.nil? ? "#{item}" : "-"
         - row[:c2].each_with_index do |item,index|
-          - if index==3 or index== 7 or index==11 or index==14
+          - if index==2 or index== 4 or index==6
+            %th{:style=>"border-right: 1px solid #dddddd;"}
+              = !item.nil? ? "#{item}" : "-"
+          - else
+            %th
+              = !item.nil? ? "#{item}" : "-"
+        - row[:c3].each_with_index do |item,index|
+          - if index==2 or index== 4 or index==6
             %th{:style=>"border-right: 1px solid #dddddd;"}
               = !item.nil? ? "#{item}" : "-"
           - else

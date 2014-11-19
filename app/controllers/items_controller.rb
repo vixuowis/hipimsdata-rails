@@ -18,6 +18,10 @@ class ItemsController < ApplicationController
       col1 = nil; col2 = nil;
       col1 = JSON.parse(item.c1) if item.c1 rescue nil
       col2 = JSON.parse(item.c2) if item.c2 rescue nil
+      col3 = JSON.parse(item.c3) if item.c3 rescue nil
+      col4 = JSON.parse(item.c4) if item.c4 rescue nil
+      col5 = JSON.parse(item.c5) if item.c5 rescue nil
+
       item_hash[:c1] = [item.name,nil,nil]
       if !col1.nil?
         # puts "col1 = #{col1.to_s}"
@@ -25,16 +29,34 @@ class ItemsController < ApplicationController
           item_hash[:c1][index] = i[1] if i[1]!="" rescue nil
         end
       end
-      item_hash[:c2] = [nil]*15
+      item_hash[:c2] = [nil]*7
       if !col2.nil?
-        item_hash[:c2][0..3] = fit_item(4,col2,"elem1_1")
-        item_hash[:c2][4..7] = fit_item(4,col2,"elem1_2")
-        item_hash[:c2][8..11] = fit_item(4,col2,"elem2")
-        item_hash[:c2][12..14] = fit_item(3,col2,"elem3")
+        item_hash[:c2][0] = col2['elem1_1']['name']
+        item_hash[:c2][1] = col2['elem1_1']['v']
+        item_hash[:c2][2] = col2['elem1_1']['a']
+        item_hash[:c2][3] = col2['elem2']['ar']
+        item_hash[:c2][4] = col2['elem2']['n']
+        item_hash[:c2][5] = col2['elem3']['pianya']
+        item_hash[:c2][6] = col2['elem3']['qiya']
+      end
+      item_hash[:c3] = [nil]*7
+      if !col3.nil?
+        item_hash[:c3][0] = col3['elem2']['baohe']
+        item_hash[:c3][1] = col3['elem2']['midu']
+        item_hash[:c3][2] = col3['elem2']['wendu']
+      end
+      if !col4.nil?
+        item_hash[:c3][3] = col4['n_1']['name']
+        item_hash[:c3][4] = col4['n_1']['chengdu']
+      end
+      if !col5.nil?
+        item_hash[:c3][5] = col5['dianliu']
+        item_hash[:c3][6] = col5['nengliang']
       end
       puts item_hash.to_s
       @hipims_data.push(item_hash)
     end
+
     if params[:o] == "n_asc"
       @hipims_data.sort! {|a,b| a[:name].to_i <=> b[:name].to_i}
     elsif params[:o] == "n_desc" 

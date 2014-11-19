@@ -5,7 +5,7 @@
   - this_col = @col4["n_#{n}"] rescue nil
   .form-group{:style=>"margin-left:10px;"}
     %label{:for=>"c4-elem-name"} 名称
-    %input.form-control.col-sm-1#c4-elem-name{:placeholder=>"元素#{n}名称",:name=>"val[n_#{n}][name]",:value=>"#{this_col["name"]rescue nil}"}
+    %input.form-control.col-sm-1#c4-elem-name{:placeholder=>"元素#{n}名称",:name=>"val[n_#{n}][name]",:value=>"#{this_col["name"] rescue nil}"}
   .form-group{:style=>"margin-left:10px;"}
     %label{:for=>"c4-elem-yuanzi"} 原子
     %input.form-control.col-sm-1#c4-elem-yuanzi{:name=>"val[n_#{n}][yuanzi]",:value=>"#{this_col["yuanzi"] rescue nil}"}
