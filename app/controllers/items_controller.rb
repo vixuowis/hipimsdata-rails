@@ -88,7 +88,7 @@ class ItemsController < ApplicationController
     item = Item.find_by(id: @id)
     item.destroy if !item.nil?
     respond_to do |format|
-      format.json{render :json=>"success"}
+      format.json{render :json=>{:result=>"success"}}
     end
   end
 
