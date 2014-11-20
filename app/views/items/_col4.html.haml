@@ -1,26 +1,27 @@
-%form.form-inline{action: "/update_item/#{@item.id}/4?n=#{n}", method: 'post',:style=>"margin-bottom:10px;"}
-  .form-group{:style=>"margin-top:24px; width:75px;"}
-    %span.label.label-info{:style=>"font-size:14px;"} 
-      = "元素 #{n}"
-  - this_col = @col4["n_#{n}"] rescue nil
-  .form-group{:style=>"margin-left:10px;"}
-    %label{:for=>"c4-elem-name"} 名称
-    %input.form-control.col-sm-1#c4-elem-name{:placeholder=>"元素#{n}名称",:name=>"val[n_#{n}][name]",:value=>"#{this_col["name"] rescue nil}"}
-  .form-group{:style=>"margin-left:10px;"}
-    %label{:for=>"c4-elem-yuanzi"} 原子
-    %input.form-control.col-sm-1#c4-elem-yuanzi{:name=>"val[n_#{n}][yuanzi]",:value=>"#{this_col["yuanzi"] rescue nil}"}
-  .form-group{:style=>"margin-left:10px;"}
-    %label{:for=>"c4-elem-lizi"} 离子
-    %input.form-control.col-sm-1#c4-elem-lizi{:name=>"val[n_#{n}][lizi]",:value=>"#{this_col["lizi"] rescue nil}"}
-  .form-group{:style=>"margin-left:10px;"}
-    %label{:for=>"c4-elem-chengdu"} 离化程度
-    %input.form-control.col-sm-1#c4-elem-chengdu{:name=>"val[n_#{n}][chengdu]",:value=>"#{this_col["chengdu"] rescue nil}"}
-  - if current_page? "/items/#{@item.id}/edit"
-    .form-group{:style=>"margin-left:10px; margin-top:24px"}
-      %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
+%form.form-inline{action: "/update_item/#{@item.id}/4?n=#{n}", method: 'post'}
+  .row{:style=>"margin-bottom:10px;"}
+    .form-group.col-sm-2{:style=>"margin-top:32px; width:85px;"}
+      %span.label.label-info{:style=>"font-size:14px;"} 
+        = "元素 #{n}"
+    - this_col = @col4["n_#{n}"] rescue nil
+    .form-group.col-sm-2
+      %label{:for=>"c4-elem-name"} 名称
+      %input.form-control#c4-elem-name{:placeholder=>"元素#{n}名称",:name=>"val[n_#{n}][name]",:value=>"#{this_col["name"] rescue nil}"}
+    .form-group.col-sm-2
+      %label{:for=>"c4-elem-yuanzi"} 原子
+      %input.form-control#c4-elem-yuanzi{:name=>"val[n_#{n}][yuanzi]",:value=>"#{this_col["yuanzi"] rescue nil}"}
+    .form-group.col-sm-2
+      %label{:for=>"c4-elem-lizi"} 离子
+      %input.form-control#c4-elem-lizi{:name=>"val[n_#{n}][lizi]",:value=>"#{this_col["lizi"] rescue nil}"}
+    .form-group.col-sm-2
+      %label{:for=>"c4-elem-chengdu"} 离化程度
+      %input.form-control#c4-elem-chengdu{:name=>"val[n_#{n}][chengdu]",:value=>"#{this_col["chengdu"] rescue nil}"}
+    - if current_page? "/items/#{@item.id}/edit"
+      .form-group{:style=>"margin-top:25px"}
+        %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
 
 - if current_page? "/items/#{@item.id}/edit"
-  %div{:style=>"margin-left:90px;margin-bottom:20px;"}
+  .row{:style=>"margin-left:75px; margin-top:10px; margin-bottom:10px;"}
     = form_tag({action: :upload_file}, multipart: true, class: "form-inline") do
       .form-group
         %label{:for=>"c4_fine_#{n}"} 精细谱

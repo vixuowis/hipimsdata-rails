@@ -1,18 +1,24 @@
-.form-group{:style=>"margin-top:24px;"}
+.form-group.col-sm-2{:style=>"margin-top:32px; width:75px;"}
   %span.label.label-info{:style=>"font-size:14px;"} 
     = "电子特征参数"
 - this_col = @col3["elem2"] rescue nil
-.form-group{:style=>"margin-left:10px;"}
+.form-group.col-sm-2{:style=>"margin-left:38px;"}
   %label{:for=>"c2-elem-baohe"} 饱和电子电流
-  %input.form-control.col-sm-1#c2-elem-baohe{:name=>"val[elem2][baohe]",:value=>"#{this_col["baohe"] rescue nil}"}
-.form-group{:style=>"margin-left:10px;"}
+  .input-group
+    %input.form-control#c2-elem-baohe{:name=>"val[elem2][baohe]",:value=>"#{this_col["baohe"] rescue nil}"}
+    .input-group-addon A
+.form-group.col-sm-2
   %label{:for=>"c2-elem-midu"} 电子密度
-  %input.form-control.col-sm-1#c2-elem-midu{:name=>"val[elem2][midu]",:value=>"#{this_col["midu"] rescue nil}"}
-.form-group{:style=>"margin-left:10px;"}
+  .input-group
+    %input.form-control.col-sm-1#c2-elem-midu{:name=>"val[elem2][midu]",:value=>"#{this_col["midu"] rescue nil}"}
+    .input-group-addon cm^-3
+.form-group.col-sm-2
   %label{:for=>"c2-elem-wendu"} 电子温度
-  %input.form-control.col-sm-1#c2-elem-wendu{:name=>"val[elem2][wendu]",:value=>"#{this_col["wendu"] rescue nil}"}
+  .input-group
+    %input.form-control#c2-elem-wendu{:name=>"val[elem2][wendu]",:value=>"#{this_col["wendu"] rescue nil}"}
+    .input-group-addon eV
 - if current_page? "/items/#{@item.id}/edit"
-  .form-group{:style=>"margin-left:10px; margin-top:24px"}
+  .form-group{:style=>"margin-top:25px"}
     %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
 
 /    探针参数		电子特征参数		

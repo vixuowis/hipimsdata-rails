@@ -1,12 +1,12 @@
-.form-group
+.form-group.col-sm-2
   %label{:for=>"c1-no"} 序号
-  %input.form-control.col-sm-1#c1-no{:placeholder=>"唯一标示符",:name=>"val[no]",:value=>"#{@item.name rescue nil}"}
-.form-group{:style=>"margin-left:10px;"}
+  %input.form-control#c1-no{:placeholder=>"唯一标示符",:name=>"val[no]",:value=>"#{@item.name rescue nil}"}
+.form-group.col-sm-2
   %label{:for=>"c1-name"} 薄膜名称
-  %input.form-control.col-sm-1#c1-name{:placeholder=>"如: Ti",:name=>"val[name]",:value=>"#{@col1['name'] rescue nil}"}
-.form-group{:style=>"margin-left:10px;"}
+  %input.form-control.col-sm-1#c1-name{:placeholder=>"e.g. Ti",:name=>"val[name]",:value=>"#{@col1['name'] rescue nil}"}
+.form-group.col-sm-2
   %label{:for=>"c1-main"} 主要元素
-  %input.form-control.col-sm-1#c1-main{:placeholder=>"如: Ti",:name=>"val[main]",:value=>"#{@col1['main'] rescue nil}"}
+  %input.form-control.col-sm-1#c1-main{:placeholder=>"e.g. Ti",:name=>"val[main]",:value=>"#{@col1['main'] rescue nil}"}
 - if current_page? "/items/#{@item.id}/edit"
-  .form-group{:style=>"margin-left:10px; margin-top:24px"}
+  .form-group{:style=>"margin-top:25px"}
     %input.btn.btn-primary{:type=>"submit",:value=>"保存"}

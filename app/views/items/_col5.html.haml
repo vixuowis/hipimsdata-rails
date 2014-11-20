@@ -1,17 +1,22 @@
-%form.form-inline{action: "/update_item/#{@item.id}/5", method: 'post',:style=>"margin-bottom:10px;"}
-  .form-group{:style=>"margin-top:24px;"}
-    %span.label.label-info{:style=>"font-size:14px;"} 
-      = "参数"
-  - this_col = @col5 rescue nil
-  .form-group{:style=>"margin-left:37px;"}
-    %label{:for=>"c5-dianliu"} 离子平均电流
-    %input.form-control.col-sm-1#c5-dianliu{:name=>"val[dianliu]",:value=>"#{this_col["dianliu"] rescue nil}"}
-  .form-group{:style=>"margin-left:10px;"}
-    %label{:for=>"c5-nengliang"} 离子平均能量
-    %input.form-control.col-sm-1#c5-nengliang{:name=>"val[nengliang]",:value=>"#{this_col["nengliang"] rescue nil}"}
-  - if current_page? "/items/#{@item.id}/edit"
-    .form-group{:style=>"margin-left:10px; margin-top:24px"}
-      %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
+%form.form-inline{action: "/update_item/#{@item.id}/5", method: 'post'}
+  .row{:style=>"margin-bottom:10px;"}
+    .form-group.col-sm-2{:style=>"margin-top:32px; width:85px;"}
+      %span.label.label-info{:style=>"font-size:14px;"}
+        = "参 数"
+    - this_col = @col5 rescue nil
+    .form-group.col-sm-2{:style=>"width:230px;"}
+      %label{:for=>"c5-dianliu"} 离子平均电流
+      .input-group
+        %input.form-control.col-sm-1#c5-dianliu{:name=>"val[dianliu]",:value=>"#{this_col["dianliu"] rescue nil}"}
+        .input-group-addon A/cm^-3
+    .form-group.col-sm-2
+      %label{:for=>"c5-nengliang"} 离子平均能量
+      .input-group
+        %input.form-control.col-sm-1#c5-nengliang{:name=>"val[nengliang]",:value=>"#{this_col["nengliang"] rescue nil}"}
+        .input-group-addon eV
+    - if current_page? "/items/#{@item.id}/edit"
+      .form-group{:style=>"margin-top:25px"}
+        %input.btn.btn-primary{:type=>"submit",:value=>"保存"}
 - if current_page? "/items/#{@item.id}/edit"
   %div{:style=>"margin-left:90px;margin-bottom:20px;"}
     = form_tag({action: :upload_file}, multipart: true, class: "form-inline") do
