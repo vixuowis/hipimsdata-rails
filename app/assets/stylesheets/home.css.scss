@@ -5,7 +5,7 @@
 #tb-overview th{
   text-align: center;
 }
-
+/*
 .top-fix-header{
   position:fixed; 
   z-index:10; 
@@ -17,4 +17,22 @@
 
 .top-fix-header h3{
   margin-top: 30px;
+}*/
+
+.header{
+  background-size: cover !important;
+  background: url("background.svg") center 0 fixed no-repeat;
+  height: 497px;
+  margin-bottom: 0;
+  background-color: #00b4d1;
+  /*filter: Alpha(Opacity=90);*/
+  /*opacity:0.90;*/
+}
+
+.jumbotron{
+  /*background-color: #2f3239;*/
+}
+
+.header h3{
+  color:white;
 }
