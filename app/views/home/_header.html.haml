@@ -1,4 +1,16 @@
-.header.jumbotron
-  .container{:style=>"margin-top:100px;"}
-    .row
-      %h3 OMG
+.header
+  .container{:style=>"margin-top:50px;"}
+    .row{:style=>"margin-top:140px;"}
+      .col-lg-8
+        %h1.heading 等离子体特征数据管理系统
+        %br
+        .sub-heading 
+          %span.glyphicon.glyphicon-ok
+          搭载 HIPIMS 高离化率电源
+        .sub-heading 
+          %span.glyphicon.glyphicon-ok
+          高品质薄膜的精密制备系统
+      .col-lg-4
+    .row{:style=>"margin-top:50px;"}
+      %p.col-lg-12{:style=>"text-align: center;"}
+        %a.btn.btn-lg.btn-primary{:role=>"button",:href=>"/items?o=n_asc"} 进入数据库
