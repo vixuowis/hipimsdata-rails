@@ -31,27 +31,27 @@ class ItemsController < ApplicationController
       end
       item_hash[:c2] = [nil]*7
       if !col2.nil?
-        item_hash[:c2][0] = col2['elem1_1']['name']
-        item_hash[:c2][1] = col2['elem1_1']['v']
-        item_hash[:c2][2] = col2['elem1_1']['a']
-        item_hash[:c2][3] = col2['elem2']['ar']
-        item_hash[:c2][4] = col2['elem2']['n']
-        item_hash[:c2][5] = col2['elem3']['pianya']
-        item_hash[:c2][6] = col2['elem3']['qiya']
+        item_hash[:c2][0] = col2['elem1_1']['name'] rescue nil
+        item_hash[:c2][1] = col2['elem1_1']['v'] rescue nil
+        item_hash[:c2][2] = col2['elem1_1']['a'] rescue nil
+        item_hash[:c2][3] = col2['elem2']['ar'] rescue nil
+        item_hash[:c2][4] = col2['elem2']['n'] rescue nil
+        item_hash[:c2][5] = col2['elem3']['pianya'] rescue nil
+        item_hash[:c2][6] = col2['elem3']['qiya'] rescue nil
       end
       item_hash[:c3] = [nil]*7
       if !col3.nil?
-        item_hash[:c3][0] = col3['elem2']['baohe']
-        item_hash[:c3][1] = col3['elem2']['midu']
-        item_hash[:c3][2] = col3['elem2']['wendu']
+        item_hash[:c3][0] = col3['elem2']['baohe'] rescue nil
+        item_hash[:c3][1] = col3['elem2']['midu'] rescue nil
+        item_hash[:c3][2] = col3['elem2']['wendu'] rescue nil
       end
       if !col4.nil?
-        item_hash[:c3][3] = col4['n_1']['name']
-        item_hash[:c3][4] = col4['n_1']['chengdu']
+        item_hash[:c3][3] = col4['n_1']['name'] rescue nil
+        item_hash[:c3][4] = col4['n_1']['chengdu'] rescue nil
       end
       if !col5.nil?
-        item_hash[:c3][5] = col5['dianliu']
-        item_hash[:c3][6] = col5['nengliang']
+        item_hash[:c3][5] = col5['dianliu'] rescue nil
+        item_hash[:c3][6] = col5['nengliang'] rescue nil
       end
       puts item_hash.to_s
       @hipims_data.push(item_hash)
