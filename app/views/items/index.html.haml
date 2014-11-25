@@ -39,8 +39,7 @@
       / c4
       %th.warning{:colspan=>2,:style=>"border-right: 1px solid #dddddd;"} 等离子体发射诊断
       / c5 
-      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 离子平均电流 (A/cm^-3)
-      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5);border-right: 1px solid #dddddd;"} 离子平均能量 (eV)
+      %th.warning{:colspan=>2,:style=>"border-right: 1px solid #dddddd; background-color:rgba(30, 144, 255, 0.5)"} 离子能量分布诊断
 
       %th{:colspan=>1,:rowspan=>2, :style=>"vertical-align:middle;"} 操作
     %tr
@@ -66,6 +65,11 @@
       / c4
       %th.warning 元素名称
       %th.warning{:style=>"border-right: 1px solid #dddddd;"} 离化程度
+
+      / c5
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 离子平均电流 (A/cm^-3)
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5);border-right: 1px solid #dddddd;"} 离子平均能量 (eV)
+
 
   %tbody
     - @hipims_data.each_with_index do |row,index|
