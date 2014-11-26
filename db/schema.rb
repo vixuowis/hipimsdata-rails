@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117061716) do
+ActiveRecord::Schema.define(version: 20141126170235) do
 
   create_table "graphs", force: true do |t|
     t.integer  "item_id"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20141117061716) do
     t.datetime "updated_at"
   end
 
-  add_index "items", ["name"], name: "index_items_on_name", unique: true
+  add_index "items", ["name"], name: "index_items_on_name", unique: true, using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_digest"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
