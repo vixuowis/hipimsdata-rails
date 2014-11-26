@@ -23,7 +23,7 @@
       %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 
         %a{:href => "/items?o=#{params['o']=="" or params['o']=="n_asc" ? "n_desc" : "n_asc"}", :class=>"#{"dropup" if params['o']=="n_asc"}"}
           序号
-          - if !params['o'].nil?
+          - if params['o'].include?("n_")
             %span.caret
       %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5)"} 薄膜名称
       %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(91, 192, 222, 0.5);border-right: 1px solid #dddddd;"} 主要元素
@@ -45,30 +45,89 @@
     %tr
       / c2
       %th.success 名称
-      %th.success 电压 (V)
-      %th.success{:style=>"border-right: 1px solid #dddddd;"} 电流 (A)
+      %th.success 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="v_asc" ? "v_desc" : "v_asc"}", :class=>"#{"dropup" if params['o']=="v_asc"}"}
+          电压
+          - if params['o'].include?("v_")
+            %span.caret
+        (V)
+      %th.success{:style=>"border-right: 1px solid #dddddd;"} 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="a_asc" ? "a_desc" : "a_asc"}", :class=>"#{"dropup" if params['o']=="a_asc"}"}
+          电流
+          - if params['o'].include?("a_")
+            %span.caret
+        (A)
+      %th.success 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="ar_asc" ? "ar_desc" : "ar_asc"}", :class=>"#{"dropup" if params['o']=="ar_asc"}"}
+          氩气 
+          - if params['o'].include?("ar_")
+            %span.caret
+        (sccm)
+      %th.success{:style=>"border-right: 1px solid #dddddd;"}
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="ngas_asc" ? "ngas_desc" : "ngas_asc"}", :class=>"#{"dropup" if params['o']=="ngas_asc"}"}
+          氮气 
+          - if params['o'].include?("ngas_")
+            %span.caret
+        (sccm)
 
-      %th.success 氩气 (sccm)
-      %th.success{:style=>"border-right: 1px solid #dddddd;"} 氮气 (sccm)
-
-      %th.success 基底偏压 (V)
-      %th.success{:style=>"border-right: 1px solid #dddddd;"} 工作气压 (Pa)
+      %th.success 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="pianya_asc" ? "pianya_desc" : "pianya_asc"}", :class=>"#{"dropup" if params['o']=="pianya_asc"}"}
+          基底偏压 
+          - if params['o'].include?("pianya_")
+            %span.caret
+        (V)
+      %th.success{:style=>"border-right: 1px solid #dddddd;"} 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="qiya_asc" ? "qiya_desc" : "qiya_asc"}", :class=>"#{"dropup" if params['o']=="qiya_asc"}"}
+          工作气压 
+          - if params['o'].include?("qiya_")
+            %span.caret
+        (Pa)
 
       / c3
       / %th.danger 靶基距
       / %th.danger 表面积A
 
-      %th.danger 饱和电子电流 (A)
-      %th.danger 电子密度 (cm^-3)
-      %th.danger{:style=>"border-right: 1px solid #dddddd;"} 电子温度 (eV)
+      %th.danger
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="baohe_asc" ? "baohe_desc" : "baohe_asc"}", :class=>"#{"dropup" if params['o']=="baohe_asc"}"}
+          饱和电子电流 
+          - if params['o'].include?("baohe_")
+            %span.caret
+        (A)
+      %th.danger 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="midu_asc" ? "midu_desc" : "midu_asc"}", :class=>"#{"dropup" if params['o']=="midu_asc"}"}
+          电子密度 
+          - if params['o'].include?("midu_")
+            %span.caret
+        (cm^-3)
+      %th.danger{:style=>"border-right: 1px solid #dddddd;"} 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="wendu_asc" ? "wendu_desc" : "wendu_asc"}", :class=>"#{"dropup" if params['o']=="wendu_asc"}"}
+          电子温度 
+          - if params['o'].include?("wendu_")
+            %span.caret
+        (eV)
 
       / c4
       %th.warning 元素名称
-      %th.warning{:style=>"border-right: 1px solid #dddddd;"} 离化程度
+      %th.warning{:style=>"border-right: 1px solid #dddddd;"} 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="lihua_asc" ? "lihua_desc" : "lihua_asc"}", :class=>"#{"dropup" if params['o']=="lihua_asc"}"}
+          离化程度 
+          - if params['o'].include?("lihua_")
+            %span.caret
+        *100%
 
       / c5
-      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 离子平均电流 (A/cm^-3)
-      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5);border-right: 1px solid #dddddd;"} 离子平均能量 (eV)
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5)"} 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="lizia_asc" ? "lizia_desc" : "lizia_asc"}", :class=>"#{"dropup" if params['o']=="lizia_asc"}"}
+          离子平均电流 
+          - if params['o'].include?("lizia_")
+            %span.caret
+        (A/cm^-3)
+      %th{:colspan=>1,:rowspan=>2,:style=>"vertical-align: middle;background-color:rgba(30, 144, 255, 0.5);border-right: 1px solid #dddddd;"} 
+        %a{:href => "/items?o=#{params['o']=="" or params['o']=="lizie_asc" ? "lizie_desc" : "lizie_asc"}", :class=>"#{"dropup" if params['o']=="lizie_asc"}"}
+          离子平均能量 
+          - if params['o'].include?("lizie_")
+            %span.caret
+        (eV)
 
 
   %tbody

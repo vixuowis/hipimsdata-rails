@@ -62,7 +62,27 @@ class ItemsController < ApplicationController
     elsif params[:o] == "n_desc" 
       @hipims_data.sort! {|a,b| b[:name].to_i <=> a[:name].to_i}
     end
-    
+
+    sort_elem("v","c2",1)
+    sort_elem("a","c2",2)
+    sort_elem("ar","c2",3)
+    sort_elem("ngas","c2",4)
+    sort_elem("pianya","c2",5)
+    sort_elem("qiya","c2",6)
+    sort_elem("baohe","c3",0)
+    sort_elem("midu","c3",1)
+    sort_elem("wendu","c3",2)
+    sort_elem("lihua","c3",4)
+    sort_elem("lizia","c3",5)
+    sort_elem("lizie","c3",6)
+  end
+
+  def sort_elem(prefix, col, elem)
+    if params[:o] == "#{prefix}_asc"
+      @hipims_data.sort! {|a,b| a["#{col}".to_sym][elem].to_f <=> b["#{col}".to_sym][elem].to_f}
+    elsif params[:o] == "#{prefix}_desc" 
+      @hipims_data.sort! {|a,b| b["#{col}".to_sym][elem].to_f <=> a["#{col}".to_sym][elem].to_f}
+    end
   end
 
   def fit_item(num, col, elem_str)
