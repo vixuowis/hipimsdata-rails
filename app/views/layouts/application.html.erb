@@ -17,7 +17,18 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav" style="font-size:14px; margin-left:20px;">
           <li class = "<%= 'active' if current_page?(root_path) %>"><%= link_to "主页", root_path %></li>
-          <li class = "<%= 'active' if current_page?(items_path) %>"><%= link_to "数据库", items_path+"?o=n_asc" %></li>
+          <li class = "<%= 'active' if current_page?(items_path) %>">
+            <%= link_to "数据库", items_path+"?o=n_asc" %>
+          </li>
+          <li class = "<%= 'active' if current_page?(support_path) %>">
+            <%= link_to "技术支持", support_path %>
+          </li>
+          <li>
+            <a href="http://coatings.imech.ac.cn/" target="_blank">
+              <span class="glyphicon glyphicon-link" style="margin-right:5px"></span>
+              镀层工艺力学与摩擦学课题组
+            </a>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
         </ul>
