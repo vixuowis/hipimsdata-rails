@@ -17,9 +17,11 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav" style="font-size:14px; margin-left:20px;">
           <li class = "<%= 'active' if current_page?(root_path) %>"><%= link_to "主页", root_path %></li>
-          <li class = "<%= 'active' if current_page?(items_path) %>">
-            <%= link_to "数据库", items_path+"?o=n_asc" %>
-          </li>
+          <%- if !current_user.nil? %>
+            <li class = "<%= 'active' if current_page?(items_path) %>">
+              <%= link_to "数据库", items_path+"?o=n_asc" %>
+            </li>
+          <%- end%>
           <li class = "<%= 'active' if current_page?(support_path) %>">
             <%= link_to "技术支持", support_path %>
           </li>
@@ -31,25 +33,34 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <%- if !current_user.nil? %>
+            <li>
+              <a href="/signout" method="delete">
+                <%= current_user.name%>
+                <span class="glyphicon glyphicon-log-out" style="margin-right:5px"></span>
+              </a>
+            </li>
+          <%- end%>
         </ul>
       </div><!--/.nav-collapse -->
 
     </div>
   </div>
 
-  <%- if current_page?(root_path) %>
+  <%- if params["controller"] == "home" or params["controller"] == "sessions"%>
     <%= render "home/header"%>
-  <%- end%>
-
-  <div class="container" style="background-color:white; margin-top:50px;">
-    <%= yield %>
-
-    <!-- Site footer -->
-    <div class="footer">
-      <p>&copy; 中国科学院力学研究所</p>
-      <!-- <p>Contact: <a href="mailto:userview-dev@group.apple.com">userview-dev@group.apple.com</a></p> -->
+      <%= yield %>
+      <div class="footer">
+        <p>&copy; 中国科学院力学研究所</p>
+      </div>
+  <%- else%>
+    <div class="container" style="background-color:white; margin-top:50px;">
+      <%= yield %>
+      <div class="footer">
+        <p>&copy; 中国科学院力学研究所</p>
+      </div>
     </div>
-  </div>
-
+  <%- end%>
+      
 </body>
 </html>

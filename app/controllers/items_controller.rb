@@ -3,6 +3,12 @@ require 'fileutils'
 
 class ItemsController < ApplicationController
   def index
+    if current_user.nil?
+      redirect_to root_path
+    end
+    if params['o'].nil?
+      params['o'] = ""
+    end
     items = Item.order("created_at desc")
     # if params[:o] == "n_asc"
     #   items = items.reorder("name asc")
@@ -144,6 +150,10 @@ class ItemsController < ApplicationController
   end
 
   def go_check_params
+    if current_user.nil?
+      redirect_to root_path
+    end
+
     begin
       @id = params[:id].to_i
     rescue 
@@ -154,6 +164,9 @@ class ItemsController < ApplicationController
   def find_item_and_process()
     go_check_params()
     @item = Item.find_by(id: @id)
+    if @item.nil?
+      redirect_to root_path
+    end
 
     @col1 = JSON.parse(@item.c1) if @item.c1 rescue []
     @col2 = JSON.parse(@item.c2) if @item.c2 rescue []

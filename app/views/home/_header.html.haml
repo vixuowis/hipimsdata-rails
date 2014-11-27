@@ -1,16 +1,25 @@
-.header
-  .container{:style=>"margin-top:50px;"}
-    .row{:style=>"margin-top:140px;"}
-      .col-lg-8
-        %h1.heading 等离子体特征数据管理系统
-        %br
-        .sub-heading 
-          %span.glyphicon.glyphicon-ok
-          搭载 HIPIMS 高离化率电源
-        .sub-heading 
-          %span.glyphicon.glyphicon-ok
-          高品质薄膜的精密制备系统
-      .col-lg-4
-    .row{:style=>"margin-top:50px;"}
-      %p.col-lg-12{:style=>"text-align: center;"}
-        %a.btn.btn-lg.btn-primary{:role=>"button",:href=>"/items?o=n_asc"} 进入数据库
+/ .header
+/   .container{:style=>"margin-top:50px;"}
+/     .row{:style=>"margin-top:140px;"}
+/       .col-lg-8
+/         %h1.heading 等离子体特征数据管理系统
+/         %br
+/         .sub-heading 
+/           %span.glyphicon.glyphicon-ok
+/           搭载 HIPIMS 高离化率电源
+/         .sub-heading 
+/           %span.glyphicon.glyphicon-ok
+/           高品质薄膜的精密制备系统
+/       .col-lg-4{:style=>"margin-top:25px;"}
+/         .form-horizontal{:role=>"form"}
+/           = form_for(:session, url:sessions_path) do |f|
+/             .form-group
+/               = f.text_field :email, class:"form-control input-lg", placeholder:"邮箱"
+/             .form-group
+/               = f.password_field :password, class:"form-control input-lg", placeholder:"密码"
+/             .form-group
+/               - flash.each do |key, value|
+/                 = content_tag(:div, raw(value), class: "alert alert-#{key}")
+/             .form-group.row{:style=>"margin-top:20px;"}
+/               %p.col-lg-12{:style=>"text-align: center;"}
+/                 = f.submit "登陆数据库", class:"btn btn-primary btn-lg"
