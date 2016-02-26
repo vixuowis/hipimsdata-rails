@@ -50,3 +50,4 @@ gem 'thin'
 # gem 'debugger', group: [:development, :test]
 
 gem 'mysql2'
+gem 'pg'
