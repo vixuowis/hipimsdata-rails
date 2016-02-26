@@ -1,6 +1,6 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
-ruby '2.1.4'
+ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
@@ -50,4 +50,4 @@ gem 'thin'
 # gem 'debugger', group: [:development, :test]
 
 gem 'mysql2'
-gem 'pg'
+gem 'pg', '< 0.13'
